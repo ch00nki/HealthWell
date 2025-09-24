@@ -1,0 +1,14 @@
+if u call apis from ur frontend, api keys will be exposed.
+The api keys MUST stay server-side
+call them here, or a custom backend server like nodejs/fastapi, or firebase functions
+Anything under app/api runs on server runtime (Node.js, Edge)
+
+Use FastAPI bcos node.js cant run pytorch/huggingface python models
+U can use nodejs as proxy/aggregator/api gateway to act as middle man tho
+While AI runs on FastAPI, use Node.js to direct/manage access to the AI
+
+Firebase api key is public as it only identifies project, 
+not give unrestricted access, the rules in firebase manage security
+In .env, the variable names for firebase keys start with NEXT_PUBLIC_ to
+auto expose them to browser, as they need to be accessible in client-side
+for firebase initialization
