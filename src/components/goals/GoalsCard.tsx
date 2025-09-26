@@ -285,14 +285,14 @@ interface Meal {
   protein: number;
   carbs: number;
   fats: number;
-  date_time: any;
+  date_time: { toDate?: () => Date } | null;
 }
 
 interface Activity {
   id: string;
   title: string;
   time: string; 
-  date_time: any;
+  date_time: { toDate?: () => Date } | null;
 }
 
 export default function GoalsCard() {

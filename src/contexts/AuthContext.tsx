@@ -74,19 +74,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         
         await setDoc(userDocRef, userData);
         console.log('Firestore document created successfully');
-      } catch (firestoreError: any) {
+      } catch (firestoreError: unknown) {
         console.error('Error creating user document:', firestoreError);
 
         // Try to delete the auth user if Firestore creation fails
         try {
           await userCredential.user.delete();
           console.log('Cleaned up auth user after Firestore error');
-        } catch (deleteError) {
+        } catch (deleteError: unknown) {
           console.error('Could not clean up auth user:', deleteError);
         }
         throw new Error('Failed to create user document. Please try again.');
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error in authentication signup:', error);
     }
   };

@@ -13,7 +13,7 @@ interface Workout {
   exercises: { name: string; sets_reps: string }[];
   rest: string;
   safety: string[];
-  createdAt: any;
+  createdAt: { toDate?: () => Date } | null;
 }
 
 export default function WorkoutList() {

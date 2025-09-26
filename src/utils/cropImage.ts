@@ -1,5 +1,7 @@
 // utils/cropImage.ts
-export default function getCroppedImg(imageSrc: string, pixelCrop: any): Promise<Blob> {
+type PixelCrop = { x: number; y: number; width: number; height: number };
+
+export default function getCroppedImg(imageSrc: string, pixelCrop: PixelCrop): Promise<Blob> {
   //imageSrc is temp img url, pixelCrop is the crop area in pixels  
   return new Promise((resolve, reject) => {
     //Promise awaits for asynchronous cropping to complete

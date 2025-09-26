@@ -16,16 +16,13 @@ import {
   TextField,
   CircularProgress
 } from '@mui/material';
-import { BarChart } from '@mui/x-charts';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { collection, query, where, orderBy, onSnapshot, doc, updateDoc, Timestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { useAuth } from '@/contexts/AuthContext';
-import { startOfWeek, endOfWeek, isWithinInterval, format, eachDayOfInterval, isSameDay } from 'date-fns';
-import { Weekend } from '@mui/icons-material';
+import { startOfWeek, endOfWeek, isWithinInterval, format, isSameDay } from 'date-fns';
+
 
 interface Meal{
     id: string;

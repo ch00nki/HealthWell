@@ -6,12 +6,10 @@ import { Box, TextField, IconButton, Paper, Typography,
  } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { useAuth } from '@/contexts/AuthContext';
-import { collection, doc, getDoc, setDoc, updateDoc, addDoc, deleteDoc, serverTimestamp, Timestamp, FieldValue, arrayUnion, onSnapshot, query, orderBy, deleteField, where } from 'firebase/firestore';
-import { getDatabase, ref, get, onValue } from 'firebase/database';
+import { collection, doc, setDoc, updateDoc, addDoc, deleteDoc, serverTimestamp, Timestamp, onSnapshot, query, orderBy, where } from 'firebase/firestore';
+import { getDatabase, ref, onValue } from 'firebase/database';
 import { db } from '@/lib/firebase';
-import { send } from 'process';
-import { add } from 'date-fns';
-import { create } from 'domain';
+
 
 
 interface Message {
