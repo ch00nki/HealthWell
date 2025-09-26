@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, Typography, TextField, Button, CircularProgress, Box, Select, MenuItem, List, ListItem, Divider, Paper } from '@mui/material';
+import { Card, CardContent, Typography, TextField, Button, CircularProgress, Box, Select, MenuItem, List, ListItem, Paper } from '@mui/material';
 import { doc, collection, addDoc,onSnapshot } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { useAuth } from '@/contexts/AuthContext';
+// removed unused imports
 // import { v4 as uuidv4 } from 'uuid';
 
 interface RecipeMakerCardProps {
@@ -134,7 +135,7 @@ const RecipeMakerCard: React.FC<RecipeMakerCardProps> = ({ value, onChange, plac
       // if (user) {
       //   await saveRecipe(recipeData);
       // }
-    } catch (err: unknown) {
+    } catch {
       setError('Failed to generate recipe. Please try again.');
     } finally {
       setLoading(false);

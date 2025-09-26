@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent, Typography, Box, List, ListItem, 
   CircularProgress, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
-import { collection, query, orderBy, onSnapshot, Timestamp } from 'firebase/firestore';
+import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { useAuth } from '@/contexts/AuthContext';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';

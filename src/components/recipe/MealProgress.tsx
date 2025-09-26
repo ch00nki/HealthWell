@@ -1,28 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Card,
-  CardContent,
-  Typography,
-  Box,
-  IconButton,
-  LinearProgress,
-  Button,
-  Collapse,
-  List,
-  ListItem,
-  Paper,
-  Stack,
-  useTheme,
-  TextField,
-  CircularProgress
-} from '@mui/material';
+import { Card, CardContent, Typography, Box, LinearProgress, Button, Collapse, List, ListItem, Paper, Stack, TextField, CircularProgress } from '@mui/material';
+// removed unused imports
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import { collection, query, where, orderBy, onSnapshot, doc, updateDoc, Timestamp } from 'firebase/firestore';
+import { collection, query, orderBy, onSnapshot, doc, updateDoc, Timestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { useAuth } from '@/contexts/AuthContext';
 import { startOfWeek, endOfWeek, isWithinInterval, format, isSameDay } from 'date-fns';
-
 
 interface Meal{
     id: string;
@@ -209,7 +193,7 @@ export default function MealProgress(){
           />
         </Box>
 
-        {/* Todays Meals  */}
+        {/* Today's Meals  */}
         <Box sx={{mb:2}}>
           <Typography variant='overline' color='text.secondary' sx={{fontWeight:'bold', ml:1, fontSize:17, lineHeight:0, display:'block', mt:4.5, mb:2}}>
             Today

@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Grid, Typography, TextField } from "@mui/material";
+import { Box } from "@mui/material";
 import SymptomCheckCard from '@/components/symptom_check/SymptomCheckCard';
 import MealCard from '@/components/meal_card/MealCard';
 import ActivityCard from '@/components/activity_card/ActivityCard';

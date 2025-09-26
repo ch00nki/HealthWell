@@ -1,23 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import {
-  Box,
-  Card,
-  CardContent,
-  Typography,
-  TextField,
-  MenuItem,
-  Button,
-  CircularProgress,
-  Divider,
-  Alert,
-  Snackbar,
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
-} from '@mui/material';
+import { Box, Card, CardContent, Typography, TextField, MenuItem, Button, CircularProgress, Divider, Alert, Snackbar, List, ListItem, ListItemText } from '@mui/material';
 import { useAuth } from '@/contexts/AuthContext';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
@@ -503,7 +487,7 @@ export default function ProfilePage() {
                   
                     {profile.maintenanceCalories ? (
                       <Typography variant="body2" color="text.secondary">
-                        'kcal/day'
+                        kcal/day
                       </Typography> 
                     ) : ( 
                       <Typography variant="h6" color="red">

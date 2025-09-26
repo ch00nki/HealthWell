@@ -21,15 +21,7 @@ import {
   DialogContentText,
   DialogActions,
 } from '@mui/material';
-import {
-  Menu as MenuIcon,
-  Home,
-  Person,
-  FitnessCenter,
-  Restaurant,
-  Message,
-  LocalHospital,
-} from '@mui/icons-material';
+import { Menu as MenuIcon, Home, Person, FitnessCenter, Restaurant, Message } from '@mui/icons-material';
 import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
 import { useTheme } from '@/contexts/ThemeContext';
@@ -58,7 +50,7 @@ export default function Navigation() {
   const pathname = usePathname();
   //floating Name
   const [name, setName] = useState('User');
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -162,8 +154,6 @@ export default function Navigation() {
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
-      } finally {
-        setLoading(false);
       }
     };
 

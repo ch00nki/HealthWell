@@ -22,7 +22,7 @@ const sampleMessages: Message[] = [
 
 export default function HealthPage() {
     const [symptomInput, setSymptomInput] = useState('');
-    const [messages, setMessages] = useState<Message[]>(sampleMessages);
+    // const [messages, setMessages] = useState<Message[]>(sampleMessages);
 
     return (
     <Box display={'flex'} flexDirection={'column'} gap={3} sx={{maxWidth: 1200, py: 1, mx: 'auto'}}>

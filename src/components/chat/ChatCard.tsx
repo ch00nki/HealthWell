@@ -9,7 +9,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { collection, doc, setDoc, updateDoc, addDoc, deleteDoc, serverTimestamp, Timestamp, onSnapshot, query, orderBy, where } from 'firebase/firestore';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { db } from '@/lib/firebase';
-
+// removed unused imports
 
 
 interface Message {

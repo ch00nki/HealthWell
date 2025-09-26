@@ -1,13 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { Box, Stack, Container } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import WorkoutMakerCard from '@/components/activity/WorkoutMakerCard';
 import WorkoutList2 from '@/components/activity/WorkoutList2';
 import ActivityLogger from '@/components/activity/ActivityLogger';
 import ActivityProgress from '@/components/activity/ActivityProgress';
 // The one that loads 20 at a time, with "load more" button can check to see if good.
-import ActivityProgress2 from '@/components/activity/ActivityProgress2';
+// import ActivityProgress2 from '@/components/activity/ActivityProgress2';
 
 export default function ActivityLogPage() {
   const [workoutPrompt, setWorkoutPrompt] = useState('');

@@ -1,8 +1,9 @@
   import React, { useEffect, useState } from 'react';
-  import { Card, CardContent, Typography, TextField, Button, CircularProgress, Box, Select, MenuItem, List, ListItem, Divider, Paper } from '@mui/material';
-  import { doc, collection, addDoc, onSnapshot } from 'firebase/firestore';
+import { Card, CardContent, Typography, TextField, Button, CircularProgress, Box, Select, MenuItem, List, ListItem, Paper } from '@mui/material';
+import { doc, collection, addDoc, onSnapshot } from 'firebase/firestore';
   import { db } from '@/lib/firebase';
   import { useAuth } from '@/contexts/AuthContext';
+// removed unused imports
 
   // import { v4 as uuidv4 } from 'uuid';
 
@@ -122,7 +123,7 @@
         };
         setWorkoutGenerated(workoutData);
         localStorage.setItem("workoutGenerated", JSON.stringify(workoutData));
-      } catch (err: unknown) {
+      } catch {
         setError('Failed to generate workout plan. Please try again.');
       } finally {
         setLoading(false);

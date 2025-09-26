@@ -83,7 +83,7 @@ export default function LoginForm() {
       </Button>
       <Box sx={{ textAlign: 'center' }}>
         <Typography variant="body2">
-          Don't have an account?{' '}
+          Don&apos;t have an account?{' '}
           <Link href="/auth/signup" style={{ textDecoration: 'none' }}>
             <MuiLink component="span" sx={{ cursor: 'pointer' }}>
               Sign Up

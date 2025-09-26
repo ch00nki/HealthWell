@@ -16,13 +16,12 @@ import {
   DialogActions,
   Button,
   TextField,
-  InputAdornment,
   Alert,
 } from '@mui/material';
 import { Edit as EditIcon, Check as CheckIcon } from '@mui/icons-material';
 import { format } from 'date-fns';
 import { useAuth } from '@/contexts/AuthContext';
-import { doc, getDoc, setDoc, updateDoc, deleteField } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 
 interface Reminder {
@@ -43,7 +42,7 @@ function sortReminders(reminders: Reminder[]): Reminder[] {
 export default function RemindersCard() {
   const { user } = useAuth();
   const [reminders, setReminders] = useState<Reminder[]>([]);
-  const [loading, setLoading] = useState(true);
+  // removed unused loading state
   const [dialogOpen, setDialogOpen] = useState(false);
   const [newTitle, setNewTitle] = useState('');
   const [newDate, setNewDate] = useState('');
@@ -54,7 +53,6 @@ export default function RemindersCard() {
   useEffect(() => {
     const fetchReminders = async () => {
       if (!user) return;
-      setLoading(true);
       try {
         const docRef = doc(db, 'users', user.uid);
         const docSnap = await getDoc(docRef);
@@ -66,10 +64,9 @@ export default function RemindersCard() {
           sortReminders(remindersArr);
           setReminders(remindersArr);
         }
-      } catch (err) {
+      } catch {
         setError('Failed to fetch reminders.');
       }
-      setLoading(false);
     };
     fetchReminders();
   }, [user]);
@@ -89,7 +86,7 @@ export default function RemindersCard() {
       setNewTitle('');
       setNewDate('');
       setNewTime('');
-    } catch (err) {
+    } catch {
       setError('Failed to add reminder.');
     }
   };
@@ -103,7 +100,7 @@ export default function RemindersCard() {
       const docRef = doc(db, 'users', user.uid);
       await updateDoc(docRef, { reminders: updatedReminders });
       setReminders(updatedReminders);
-    } catch (err) {
+    } catch {
       setError('Failed to remove reminder.');
     }
   };

@@ -15,10 +15,10 @@ import {
   Alert,
   Snackbar
 } from '@mui/material';
-import { collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, query, orderBy, onSnapshot } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { useAuth } from '@/contexts/AuthContext';
-import { format, set } from 'date-fns';
+import { format } from 'date-fns';
 
 interface SavedWorkout {
   id: string;

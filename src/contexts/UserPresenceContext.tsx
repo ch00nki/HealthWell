@@ -1,4 +1,4 @@
-import { getDatabase, ref, onDisconnect, set, serverTimestamp } from "firebase/database";
+import { ref, onDisconnect, set, serverTimestamp } from "firebase/database";
 import { useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { rtdb } from "@/lib/firebase";
