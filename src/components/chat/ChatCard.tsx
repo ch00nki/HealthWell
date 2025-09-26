@@ -45,7 +45,6 @@ export default function ChatCard() {
     const { user } = useAuth();
     const [chat, setChat] = useState<Chat|null>(null);
     const [input, setInput] = useState('');
-    const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [profile, setProfile] = useState<UserProfile|null>(null)
     const bottomRef = useRef<HTMLDivElement | null>(null);
@@ -57,19 +56,16 @@ export default function ChatCard() {
     // TO KEEP CHATID UPDATED
     useEffect(() => {
     if (!user) {
-        setLoading(false);
         return;
     }
     const unsubscribeProfile = onSnapshot(
         doc(db, 'users', user.uid),
         (doc) => {
         setProfile(doc.data() as UserProfile);
-        setLoading(false);
         },
         (error) => {
         console.error('Error fetching profile:', error);
         setError('Failed to load profile data');
-        setLoading(false);
         }
     );
     return () => unsubscribeProfile();
@@ -99,10 +95,6 @@ export default function ChatCard() {
                     : null,
                 } : null,
                 }));
-                // calling console.log immediately calls prevChat, new state WILL update
-                console.log(chat?.endedBy)
-                console.log(chat?.endedBy?.user)
-                console.log(chat?.endedBy?.endedAt)
         } else {
             setChat(null); // chat doc does not exist
         }
@@ -113,7 +105,7 @@ export default function ChatCard() {
         }
     );
     return () => unsubscribeChat();
-    }, [profile?.chatId]);
+    }, [profile?.chatId, chat?.endedBy]);
 
     // 3. LISTEN FETCH MESSAGES FOR THE CURRENT CHAT.ID & IF CHAT.ID CHANGES
     useEffect(() => {
@@ -149,12 +141,12 @@ export default function ChatCard() {
 
     // 4. SCROLL TO BOTTOM WHEN NEW MESSAGE IS ADDED
     useEffect(() => {
-        if (!user  || !chat?.messages || chat.messages.length === 0) return;
+        if (!user || !chat?.messages || chat.messages.length === 0) return;
         // Scroll to bottom only if the last message is sent by the current user
         const lastMessage = chat.messages[chat.messages.length - 1];
         if (lastMessage?.senderId === user.uid){
         bottomRef.current?.scrollIntoView({ behavior: 'smooth' });}
-    }, [chat?.messages]);
+    }, [chat?.messages, user]);
 
 
     // 5. LISTEN FETCH INCOMING REQUESTS ONLY IF DOCTOR IS ONLINE

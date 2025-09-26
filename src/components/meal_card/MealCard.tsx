@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Card, CardActions, CardContent, CardMedia, Button, Typography } from '@mui/material';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 
 export default function MealCard() {

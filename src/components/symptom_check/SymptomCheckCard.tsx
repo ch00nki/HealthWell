@@ -132,7 +132,7 @@ const SymptomCheckCard: React.FC<SymptomCheckCardProps> = ({ value, onChange, pl
           const data = await response.json();
           setMedGemmaDiagnosis(data.diagnosis);
       } 
-    }catch (err: unknown) {
+    } catch {
       setError("Failed to get diagnosis. Please try again.");
     } finally {
       setLoading(false);

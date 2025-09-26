@@ -5,6 +5,7 @@ import { Box, Card, CardContent, Typography, TextField, MenuItem, Button, Circul
 import { useAuth } from '@/contexts/AuthContext';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
+import Image from 'next/image';
 
 // Use Box for layout instead of Grid due to TypeScript issues
 import { styled } from '@mui/material/styles';
@@ -19,18 +20,6 @@ import Slider from '@mui/material/Slider';
 import Modal from '@mui/material/Modal';
 import getCroppedImg from '@/utils/cropImage';
 import { Area } from 'react-easy-crop';
-
-const GridBox = styled(Box)(({ theme }) => ({
-  display: 'grid',
-  gap: theme.spacing(3),
-  gridTemplateColumns: 'repeat(12, 1fr)',
-  '& > *': {
-    gridColumn: 'span 12',
-    '@media (min-width: 600px)': {
-      gridColumn: 'span 6',
-    },
-  },
-}));
 
 interface UserProfile {
   age: number;
@@ -266,9 +255,11 @@ export default function ProfilePage() {
                 border: '2px solid #ccc',
               }}
             >
-              <img
-                src={profilePhotoURL || '/placeholder.png'} // default fallback
-                alt="Profile" // alt text if img fail load
+              <Image
+                src={profilePhotoURL || '/placeholder.png'}
+                alt="Profile"
+                width={150}
+                height={150}
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </Box>
