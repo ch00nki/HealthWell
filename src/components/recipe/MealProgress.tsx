@@ -147,7 +147,7 @@ export default function MealProgress(){
     <Card sx={{maxHeight:1000, overflowY:'auto', scrollbarWidth:'thin'}}>
       <CardContent>
         <Typography variant="h6" component="h2" color="primary.main" gutterBottom fontWeight={600}>
-          Today's Meal Progress
+          {"Today's Meal Progress"}
         </Typography>
 
         {/* Target Setting */}

@@ -45,7 +45,6 @@ export default function ChatCard() {
     const { user } = useAuth();
     const [chat, setChat] = useState<Chat|null>(null);
     const [input, setInput] = useState('');
-    const [error, setError] = useState<string | null>(null);
     const [profile, setProfile] = useState<UserProfile|null>(null)
     const bottomRef = useRef<HTMLDivElement | null>(null);
     const [incomingRequests, setIncomingRequests] = useState<Request[]>([]);
@@ -65,7 +64,6 @@ export default function ChatCard() {
         },
         (error) => {
         console.error('Error fetching profile:', error);
-        setError('Failed to load profile data');
         }
     );
     return () => unsubscribeProfile();
@@ -100,7 +98,6 @@ export default function ChatCard() {
         }
         },
         (error) => {
-        setError('Error fetching chat details')
         console.error('Error fetching chat:', error);
         }
     );
@@ -108,6 +105,7 @@ export default function ChatCard() {
     }, [profile?.chatId, chat?.endedBy]);
 
     // 3. LISTEN FETCH MESSAGES FOR THE CURRENT CHAT.ID & IF CHAT.ID CHANGES
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
     // when chat resets, listener will stop, no need reset chat:messages bcos whole chat reset
     if (!chat || !chat?.id) return;

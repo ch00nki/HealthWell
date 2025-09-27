@@ -8,7 +8,6 @@ import { db } from '@/lib/firebase';
 import Image from 'next/image';
 
 // Use Box for layout instead of Grid due to TypeScript issues
-import { styled } from '@mui/material/styles';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 // Profile pic cropper & uploader (PROFILEPHOTO)
