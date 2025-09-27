@@ -105,7 +105,6 @@ export default function ChatCard() {
     }, [profile?.chatId, chat?.endedBy]);
 
     // 3. LISTEN FETCH MESSAGES FOR THE CURRENT CHAT.ID & IF CHAT.ID CHANGES
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
     // when chat resets, listener will stop, no need reset chat:messages bcos whole chat reset
     if (!chat || !chat?.id) return;
@@ -134,6 +133,7 @@ export default function ChatCard() {
     });
     // clean up only runs when chatID changes or component unmounts (chatcard unmounts)
     return () => unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [chat?.id]); //u had chat in dependencies, it changes everytime messages changes
     //so u had infinite loop
 
