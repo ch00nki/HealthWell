@@ -22,7 +22,7 @@ python -m venv .venv
 ./.venv/Scripts/activate  # Windows PowerShell
 pip install --upgrade pip
 pip install -r requirements.txt
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
 The backend loads env from the repo root `.env.local`. If your working directory differs, this still works because we explicitly load it via `load_dotenv(".env.local")`.

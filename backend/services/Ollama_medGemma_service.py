@@ -5,7 +5,8 @@ import re
 class MedGemma4BService:
 	def __init__(self):
 		# Ensure this model is available locally: `ollama pull medgemma:4b`
-		self.model_name = "alibayram/medgemma:4b"
+		# self.model_name = "alibayram/medgemma:4b"
+		self.model_name = "amsaravi/medgemma-4b-it:q6"
 
 	async def get_diagnosis(self, symptoms: str) -> str:
 		# prompt = (
