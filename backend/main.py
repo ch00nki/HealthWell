@@ -2,10 +2,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import flan_diagnosis, medLlama2_diagnosis, medGemma_diagnosis, ai_generate
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 
 # Load .env.local explicitly
-load_dotenv(".env.local")
+load_dotenv(find_dotenv(".env.local"))
 
 app = FastAPI()
 
