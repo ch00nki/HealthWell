@@ -1,16 +1,26 @@
+# Use official Python slim image
 FROM python:3.11-slim
 
+# Prevent Python from writing .pyc files and buffering stdout/stderr
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Set working directory
 WORKDIR /app
 
-# Update OS packages to reduce vulnerabilities
-RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
-
-# Install Python dependencies
+# Copy requirements first for caching
 COPY requirements.txt .
+
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy app code
+# Copy the rest of the application
 COPY . .
 
-# Run FastAPI
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+# Expose default Cloud Run port
+ENV PORT=8080
+EXPOSE 8080
+
+# Command to run the app with Gunicorn
+# 'main:app' → 'main' is the filename, 'app' is the Flask app object inside it
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "main:app"]
