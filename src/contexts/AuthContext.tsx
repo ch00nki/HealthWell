@@ -9,9 +9,9 @@ import {
   onAuthStateChanged,
   getIdToken
 } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
-import { auth, db } from '@/lib/firebase';
-import { usePresenceTracker } from './UserPresenceContext';
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { auth, db, rtdb } from '@/lib/firebase';
+import { ref, set } from 'firebase/database';
 
 interface AuthContextType {
   user: User | null;
@@ -23,15 +23,10 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
-
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  usePresenceTracker();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -92,6 +87,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const logOut = async () => {
+      const user = auth.currentUser;
+      if (user) {
+        const userStatusRef = ref(rtdb, `/status/${user.uid}`);
+        await set(userStatusRef, {
+          state: 'offline',
+          last_changed: Date.now(),
+        });
+      }
       await signOut(auth);
   };
 
@@ -109,3 +112,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     </AuthContext.Provider>
   );
 }
+
+export const useAuth = () => {
+  return useContext(AuthContext);
+};

@@ -13,18 +13,31 @@ export function usePresenceTracker() {
 
     const onlineStatus = {
       state: 'online',
-      last_changed: serverTimestamp(),
+      last_changed: Date.now(),
     };
 
     const offlineStatus = {
       state: 'offline',
-      last_changed: serverTimestamp(),
+      last_changed: Date.now(),
     };
 
-    // Setup onDisconnect to run when disconnect happens in future
-    onDisconnect(userStatusRef).set(offlineStatus).then(() => {
-      // THEN u mark online
-      set(userStatusRef, onlineStatus);
-    });
+  // Set up onDisconnect first
+  const disconnectPromise = onDisconnect(userStatusRef).set(offlineStatus);
+
+  // Then mark user online
+  disconnectPromise.then(() => {
+    set(userStatusRef, onlineStatus);
+  });
+
+  // Cleanup when user logs out or component unmounts
+  return () => {
+    set(userStatusRef, offlineStatus);
+  };
   }, [user]);
+}
+
+// ✅ New component version that wraps children and activates the hook
+export function UserPresenceTracker({ children }: { children: React.ReactNode }) {
+  usePresenceTracker();
+  return <>{children}</>;
 }
