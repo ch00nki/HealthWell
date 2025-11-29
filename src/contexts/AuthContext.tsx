@@ -9,7 +9,7 @@ import {
   onAuthStateChanged,
   getIdToken
 } from 'firebase/auth';
-import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { auth, db, rtdb } from '@/lib/firebase';
 import { ref, set } from 'firebase/database';
 

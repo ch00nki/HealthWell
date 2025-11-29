@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Providers } from './providers';
 import NavigationWrapper from '@/components/NavigationWrapper';
-import { Box } from '@mui/material';
 import BackgroundProvider from './backgroundProvider';
 
 export const metadata: Metadata = {
