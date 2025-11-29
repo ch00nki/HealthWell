@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { CSSProperties,createContext, useContext, useState, ReactNode } from 'react';
 import { Box } from '@mui/material';
 
 // 🧠 Context + Provider in one file
@@ -31,7 +31,7 @@ export default function BackgroundProvider({ children }: { children: ReactNode }
   };
 
   // 🎨 Background styles
-  const backgrounds: Record<string, any> = {
+  const backgrounds: Record<Background, CSSProperties> = {
     gradient: {
       background: 'linear-gradient(135deg, #667eea 0%, #764ba2 45%, rgb(213, 106, 225) 120%)',
     },
