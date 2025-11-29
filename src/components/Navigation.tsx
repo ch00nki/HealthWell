@@ -31,6 +31,10 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 
 import Marquee from 'react-fast-marquee';
 
+import PaletteIcon from '@mui/icons-material/Palette';
+import { useBackground } from '@/app/backgroundProvider';
+
+
 const drawerWidth = 240;
 
 const navItems = [
@@ -51,6 +55,9 @@ export default function Navigation() {
   //floating Name
   const [name, setName] = useState('User');
   // const [loading, setLoading] = useState(true);
+
+  //Background
+  const {toggleBackground} = useBackground();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -212,10 +219,13 @@ export default function Navigation() {
           }
           {user ? (
             <>
+              <IconButton color="primary" onClick={toggleBackground} sx={{ mx: 1 }}>
+                <PaletteIcon />
+              </IconButton>
               <IconButton
                 color="primary"
                 onClick={toggleTheme}
-                sx={{ mr: 1 }}
+                sx={{ mr: 2 }}
               >
                 {isDarkMode ? <LightModeIcon /> : <DarkModeIcon />}
               </IconButton>
