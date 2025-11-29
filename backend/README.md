@@ -5,8 +5,10 @@
 Create a `.env.local` in the project root (repo root, not inside `backend/`) with:
 
 ```
-OPENAI_API_KEY=YOUR_OPENAI_KEY
+OPENAI_API_KEY=YOUR_OPENAI_KEY (for AI)
+VERCEL_URL=YOUR_VERCEL_URL (for CORS)
 ```
+Ollama, flan, both served without keys
 
 Backend also requires a Firebase Admin credential JSON placed at `backend/serviceAccountKey.json` for verifying ID tokens:
 
